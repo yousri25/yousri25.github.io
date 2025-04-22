@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amineadhkar</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #ffffff, #f8f0e3);
+            color: #d4af37; /* Gold color */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Title Styles */
+        h1 {
+            font-size: 3rem;
+            text-align: center;
+            color: #d4af37;
+            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 2s ease-in-out infinite alternate;
+            margin-bottom: 40px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                transform: translateY(-20px);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        /* Photo Section */
+        .photo-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .photo-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .photo-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Buttons */
+        .button {
+            background-color: #d4af37;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            animation: zoomIn 0.3s ease;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #d4af37;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        .top-div, .bottom-div {
+            width: 50%;
+            background: linear-gradient(to right, #f8f0e3, #ffffff);
+            color: #d4af37;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 10px 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .top-div:hover, .bottom-div:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1:first-of-type {
+    animation: slideFade 3s ease-in-out infinite alternate;
+}
+
+@keyframes slideFade {
+    0% {
+        transform: translateY(-20px);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translateY(10px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 0.8;
+    }
+}
+        
+
+
+    </style>
+</head>
+<body>
+    <h1>بسم الله الرحمن الرحيم </h1>
+    <div class="top-div">
+        <p>اللَّهمَّ اغْفِرْ لحيِّنا وميِّتِنا وشاهدنا وغائِبنا وصَغيرنا وَكبيرنا وذَكرِنا وأُنثانا اللَّهمَّ مَنْ أحييتَه مِنَّا فأحيِه علَى الإسلامِ ومن تَوَفَّيتَه مِنَّا فتَوفَّهُ علَى الإيمانِ اللَّهمَّ لا تحرمنا أجرَه ولا تُضلَّنا بعدَه</p>
+    </div>
+
+
+    <h1>أذكار الصباح</h1>
+    <div class="photo-section">
+        <button class="button" onclick="prevPhoto()">&#8592;</button>
+        <div class="photo-container">
+            <img id="photo" src="IMG_3960.JPG" alt="Photo" onclick="openModal()">
+        </div>
+        <button class="button" onclick="nextPhoto()">&#8594;</button>
+    </div>
+
+    <!-- Modal for Zoomed Image -->
+    <div id="modal" class="modal" onclick="closeModal()">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+
+    <h1>أذكار المساء</h2>
+    <div class="photo-section">
+        <button class="button" onclick="prevPhoto2()">&#8592;</button>
+        <div class="photo-container">
+            <img id="photo2" src="IMG_3991.JPG" alt="Photo" onclick="openModal2()">
+        </div>
+        <button class="button" onclick="nextPhoto2()">&#8594;</button>
+    </div>
+
+    <div class="bottom-div">
+        <p>استغفِروا لأخيكُم ، وسَلوا لَهُ التَّثبيتَ ، فإنَّهُ الآنَ يُسأَلُ</p>
+    </div>
+
+    <script>
+        // JavaScript for the first photo section
+        const photos = [
+            "IMG_3955.JPG",
+            "IMG_3956.JPG",
+            "IMG_3957.JPG",
+            "IMG_3958.JPG",
+            "IMG_3959.JPG",
+            "IMG_3960.JPG",
+            "IMG_3961.JPG",
+            "IMG_3962.JPG",
+            "IMG_3963.JPG",
+            "IMG_3964.JPG",
+            "IMG_3965.JPG"
+        ];
+        let currentPhotoIndex = 0;
+
+        const photoElement = document.getElementById("photo");
+
+        function updatePhoto() {
+            photoElement.src = photos[currentPhotoIndex];
+        }
+
+        function nextPhoto() {
+            currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
+            updatePhoto();
+        }
+
+        function prevPhoto() {
+            currentPhotoIndex = (currentPhotoIndex - 1 + photos.length) % photos.length;
+            updatePhoto();
+        }
+
+        // JavaScript for the second photo section
+        const photos2 = [
+            "IMG_3980.JPG",
+            "IMG_3981.JPG",
+            "IMG_3982.JPG",
+            "IMG_3983.JPG",
+            "IMG_3984.JPG",
+            "IMG_3985.JPG",
+            "IMG_3986.JPG",
+            "IMG_3987.JPG",
+            "IMG_3988.JPG",
+            "IMG_3989.JPG",
+            "IMG_3990.JPG",
+            "IMG_3991.JPG"
+        ];
+        let currentPhotoIndex2 = 0;
+
+        const photoElement2 = document.getElementById("photo2");
+
+        function updatePhoto2() {
+            photoElement2.src = photos2[currentPhotoIndex2];
+        }
+
+        function nextPhoto2() {
+            currentPhotoIndex2 = (currentPhotoIndex2 + 1) % photos2.length;
+            updatePhoto2();
+        }
+
+        function prevPhoto2() {
+            currentPhotoIndex2 = (currentPhotoIndex2 - 1 + photos2.length) % photos2.length;
+            updatePhoto2();
+        }
+
+        // Open modal to zoom image for the first section
+        function openModal() {
+            modal.style.display = "block";
+            modalImage.src = photos[currentPhotoIndex];
+        }
+
+        // Open modal to zoom image for the second section
+        function openModal2() {
+            modal.style.display = "block";
+            modalImage.src = photos2[currentPhotoIndex2];
+        }
+
+        // Close modal
+        function closeModal() {
+            modal.style.display = "none";
+        }
+    </script>
+</body>
+</html>
